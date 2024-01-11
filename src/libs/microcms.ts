@@ -30,6 +30,9 @@ export type WorkType = {
 export async function listWorksData(): Promise<WorkType[]> {
   const res = await client.get({
     endpoint: "works",
+    customRequestInit: {
+      cache: "no-store", // キャッシュを利用せずに常に新しいデータを取得する
+    },
   });
 
   if (!res.contents) {
