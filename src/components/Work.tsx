@@ -16,7 +16,6 @@ export const Work: FC<Props> = ({ workData }) => {
           alt={`Image of ${workData.headline}`}
           width={1600}
           height={900}
-          priority
         />
 
         <div className="pt-4">
@@ -45,7 +44,6 @@ export const Work: FC<Props> = ({ workData }) => {
               alt="open-in-new"
               width={12}
               height={12}
-              priority
             />
           </a>
         )}

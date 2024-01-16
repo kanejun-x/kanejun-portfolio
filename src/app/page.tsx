@@ -1,6 +1,16 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import { Work } from "@/components/Work";
 import { listWorksData, getAboutMeData } from "@/libs/microcms";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const aboutMe = await getAboutMeData();
+  return {
+    title: aboutMe.name,
+    description: aboutMe.siteDescription,
+    robots: "noindex,nofollow",
+  };
+}
 
 export default async function Home() {
   const works = await listWorksData();
@@ -27,7 +37,7 @@ export default async function Home() {
       <div className="fixed left-0 top-0">
         <Image
           className="h-screen w-screen object-cover"
-          src={"/IMG_5409.jpeg"}
+          src={aboutMe.bgImage.url}
           alt="background"
           width={4032}
           height={2849}
@@ -82,7 +92,7 @@ export default async function Home() {
 
             <footer>
               <div className="mx-auto max-w-5xl px-6 pb-16 pt-3 text-center text-xs md:px-12 md:pt-8">
-                {`© 2023-2024 ${aboutMe.name}`}
+                {`© ${new Date().getFullYear()} ${aboutMe.name}`}
               </div>
             </footer>
           </div>

@@ -6,7 +6,13 @@ export const client = createClient({
   apiKey: MICROCMS_API_KEY,
 });
 
-export type WorkType = {
+export interface ImageType {
+  url: string;
+  height: number;
+  width: number;
+}
+
+export interface WorkType {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -16,18 +22,14 @@ export type WorkType = {
   headline: string;
   subHeadline: string;
   description: string;
-  mainVisual: {
-    url: string;
-    height: number;
-    width: number;
-  };
+  mainVisual: ImageType;
   devType: string;
   role: string;
   technology: string;
   link: string;
-};
+}
 
-export type ItemsType = {
+export interface ItemsType {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -35,22 +37,25 @@ export type ItemsType = {
   revisedAt: string;
   category: [string];
   item: string;
-};
+}
 
-export type AboutMeType = {
+export interface AboutMeType {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   revisedAt: string;
   name: string;
   title: string;
+  siteDescription: string;
+  bgImage: ImageType;
+  favicon: ImageType;
   introduction: string;
   skills: ItemsType[];
   workExperience: ItemsType[];
   education: ItemsType[];
   certification: ItemsType[];
   language: ItemsType[];
-};
+}
 
 export async function listWorksData(): Promise<WorkType[]> {
   const res = await client.get({
