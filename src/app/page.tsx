@@ -9,6 +9,11 @@ export async function generateMetadata(): Promise<Metadata> {
     title: aboutMe.name,
     description: aboutMe.siteDescription,
     robots: "noindex,nofollow",
+    icons: {
+      icon: aboutMe.favicon,
+      shortcut: aboutMe.favicon,
+      apple: aboutMe.favicon,
+    },
   };
 }
 
